@@ -1,0 +1,79 @@
+export ZSH_DISABLE_COMPFIX=true
+
+
+export ZSH="/Users/xuehongyan/.oh-my-zsh"
+
+
+ZSH_THEME="avit"
+plugins=(git)
+
+
+source $ZSH/oh-my-zsh.sh
+source /Users/xuehongyan/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/xuehongyan/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/xuehongyan/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/xuehongyan/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/xuehongyan/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+setopt no_nomatch
+
+
+function proxy(){
+    export HTTP_PROXY=127.0.0.1:10080;
+    export HTTPS_PROXY=127.0.0.1:10080;
+}
+
+
+eval "$(mcfly init zsh)"
+export MCFLY_RESULTS=20
+
+
+export HOMEBREW_NO_AUTO_UPDATE=true
+
+
+# General
+function cdl(){
+    cd $1 && ls
+}
+alias clr='clear'
+
+# Conda env management
+alias ca='conda activate '
+alias cda='conda deactivate'
+alias cel='conda env list'
+
+# Vim
+alias v='nv'
+alias vv='v ~/.vimrc'
+alias nv='nvim'
+alias nvi='nv ~/.config/nvim/init.vim'
+
+# Zshrc
+alias vz='v ~/.zshrc'
+alias sz='source ~/.zshrc'
+
+# Pip
+alias pi='pip install '
+alias pl='pip list'
+
+# Homebrew
+alias bs='brew search '
+alias bi='brew install '
+
+# MISC
+alias rg='ranger '
+alias blt='~/bulletin nvim'
+
